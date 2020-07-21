@@ -1,27 +1,17 @@
 pipeline {
-  environment {
-    registry = "ma378056/docker-test"
-    registryCredential = 'Dockerhub'
-    dockerImage = ''
-  }
   agent any
   stages {
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/ma378056/docker.git'
-      }
-    }
-    stage('Building image') {
+        stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build":$BUILD_NUMBER"
         }
       }
     }
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( 'https://hub.docker.com/', registryCredential ) {
+          docker.withRegistry( 'https://hub.docker.com/','Dockerhub') {
             dockerImage.push()
           }
         }
