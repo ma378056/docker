@@ -14,5 +14,5 @@ node {
         withDockerRegistry([ credentialsId: "Dockerhub", url: "" ]) {
         bat "docker push ma378056/my-image:latest"
         }
-
+      }
 }
