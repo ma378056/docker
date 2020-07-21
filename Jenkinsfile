@@ -1,27 +1,20 @@
 pipeline {
   agent any
   stages {
-        stage('Building image') {
-      steps{
-        script {
-          docker.withRegistry( 'https://hub.docker.com/','Dockerhub')
-          def dockerImage = docker.build("my-image:${env.BUILD_ID}")      
-          }
-      }
-    }
-    stage('Deploy Image') {
+    stage('Deploy Image and push') {
       steps{
         script {
            
-            dockerImage.push()
+        docker.withRegistry('https://hub.docker.com/','Dockerhub') {
+
+        def customImage = docker.build("my-image:latest")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
         }
       }
     }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
-      }
-    }
+
   }
 } 
 
