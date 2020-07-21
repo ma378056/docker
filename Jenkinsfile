@@ -4,8 +4,8 @@ pipeline {
         stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build":$BUILD_NUMBER"
-        }
+          def dockerImage = docker.build("my-image:${env.BUILD_ID}")      
+          }
       }
     }
     stage('Deploy Image') {
