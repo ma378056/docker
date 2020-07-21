@@ -1,18 +1,11 @@
 node {
+    checkout scm
 
-  checkout scm
+    docker.withRegistry('','Dockerhub') {
 
-  stage('Build image') {
-    /* This builds the actual image; synonymous to
-     * docker build on the command line */
+        def customImage = docker.build("my-image:${env.BUILD_ID}")
 
-     bat 'docker build -t ma378056/my-image:latest . '  
-  }
-
-
- stage('Push image') {
-        withDockerRegistry([ credentialsId: "Dockerhub", url: "" ]) {
-        bat "docker push ma378056/my-image:latest"
-        }
-      }
+        /* Push the container to the custom Registry */
+        customImage.push()
+    }
 }
