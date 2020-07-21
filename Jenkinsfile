@@ -18,18 +18,13 @@ pipeline {
         }
       }
     }
-    stage('Deploy Image') {
+    stage('Pushing Image') {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
             dockerImage.push()
           }
         }
-      }
-    }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $image_tag +':latest'"
       }
     }
   }
