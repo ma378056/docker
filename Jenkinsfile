@@ -11,7 +11,7 @@ node {
 
 
  stage('Push image') {
-        withDockerRegistry([ credentialsId: "Dockerhub", url: "https://hub.docker.com" ]) {
+        withDockerRegistry([ credentialsId: "Dockerhub", url: "" ]) {
         bat "docker push ma378056/my-image:latest"
         }
 
