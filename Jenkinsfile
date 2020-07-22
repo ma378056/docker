@@ -14,7 +14,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build(image_tag + ":latest")
+          dockerImage = docker.build(image_tag + ":1.0.1")
         }
       }
     }
