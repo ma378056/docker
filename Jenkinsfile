@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    image_tag = "ma378056/test-image"
+    image_tag = "ma378056/Demo-image"
     registryCredential = 'Dockerhub'
     dockerImage = ''
   }
