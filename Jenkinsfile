@@ -9,7 +9,7 @@ pipeline {
     stage('Build-Package') {
       steps{
         script {
-          def mvnhome = tool name: 'M3', type: 'maven'
+          def mvnhome = tool name: 'maven', type: 'maven'
 
           sh "${mvnhome}/bin/mvn package"
         }
