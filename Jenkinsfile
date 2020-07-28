@@ -11,7 +11,7 @@ pipeline {
         script {
           def mvnhome = tool name: 'maven', type: 'maven'
 
-          sh "${mvnhome}/bin/mvn package"
+          sh "${mvnhome}/bin/mvn install"
         }
       }
     }
