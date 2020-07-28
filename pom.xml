@@ -27,6 +27,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <directory>/home/ubuntu/docker/</directory>
     </build>
 </project>
 
